@@ -1,21 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import logo from './logo.svg';
-import './App.css';
-import ShowContacts from './ShowContacts'
+import "./App.css";
+import ShowCelebs from "./ShowCelebs";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <table className="tableStyle"> 
-          <tr>
-            <th>Picture</th>
-            <th>Name</th>
-            <th>Popularity</th>
-          </tr>
-        </table>
-        <ShowContacts />
-
+      <div className="App appContainer">
+      <h1>IRON CONTACTS</h1>
+        <ShowCelebs />
       </div>
     );
   }
