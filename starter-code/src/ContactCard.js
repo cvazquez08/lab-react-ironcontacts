@@ -12,7 +12,7 @@ function ContactCard({ contact, index, celebDelete}) {
       </td>
       <td>{name}</td>
       <td>{popularity.toFixed(2)}</td>
-      <td><button onClick={() => this.celebDelete(index)}>Delete</button></td>
+      <td><button onClick={() => celebDelete(index)}>Delete</button></td>
     </tr>
   );
 }

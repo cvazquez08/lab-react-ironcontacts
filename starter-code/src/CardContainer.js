@@ -96,7 +96,7 @@ class CardContainer extends Component {
             {contacts.map((eachContact, index) => {
               return (
 
-                  <ContactCard key={index} contact={eachContact} celebDete = { index  => this.deleteCeleb(index)} />
+                  <ContactCard key={index} index={index} contact={eachContact} celebDelete = { index  => this.deleteCeleb(index)} />
 
 
 
