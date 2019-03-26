@@ -1,7 +1,8 @@
 import React from 'react';
 import "./App.css";
 
-function ContactCard({ contact}) {
+
+function ContactCard({ contact, index, celebDelete}) {
   const { name, pictureUrl, popularity } = contact;
 
   return (
@@ -11,6 +12,7 @@ function ContactCard({ contact}) {
       </td>
       <td>{name}</td>
       <td>{popularity.toFixed(2)}</td>
+      <td><button onClick={() => this.celebDelete(index)}>Delete</button></td>
     </tr>
   );
 }

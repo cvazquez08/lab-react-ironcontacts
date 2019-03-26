@@ -3,6 +3,7 @@ import contacts from "./contacts";
 import ContactCard from "./ContactCard";
 
 class CardContainer extends Component {
+
   state = { contacts: contacts.slice(0, 5), allContacts: contacts };
 
   addRandomContact = () => {
@@ -67,6 +68,7 @@ class CardContainer extends Component {
       // set original state to copied state
       contacts: contactsCopy
     });
+
   }
 
   render() {
@@ -93,7 +95,11 @@ class CardContainer extends Component {
             </tr>
             {contacts.map((eachContact, index) => {
               return (
-                  <ContactCard key={index} contact={eachContact}/>
+
+                  <ContactCard key={index} contact={eachContact} celebDete = { index  => this.deleteCeleb(index)} />
+
+
+
               );
             })}
           </tbody>
