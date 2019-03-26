@@ -1,20 +1,11 @@
-import React, { Component } from "react";
-import contacts from "./contacts.json";
-import "./App.css";
+import React, { Component, Fragment } from "react";
+import contacts from "./contacts";
+import ContactCard from "./ContactCard";
 
-class ShowCelebs extends Component {
-  constructor() {
-    super();
-    this.state = {
-      // contacts = first 5 contacts from contacts.json folder
-      contacts: contacts.slice(0, 5),
-      // set allContacts = .... all contacts
-      allContacts: contacts
-    };
-  }
+class CardContainer extends Component {
+  state = { contacts: contacts.slice(0, 5), allContacts: contacts };
 
-  // addCeleb function
-  addCeleb() {
+  addRandomContact = () => {
     //DO NOT MUTATE ORIGINAL STATE - CREATE A COPY ***** in order to rerender state ******
     // need a list of both allContacts and original contacts(first  5)
     const { allContacts, contacts } = this.state;
@@ -29,14 +20,13 @@ class ShowCelebs extends Component {
       randomCeleb = allContacts[Math.floor(Math.random() * allContacts.length)];
     }
 
-
     celebCopy.push(randomCeleb);
 
     this.setState({
       // set original state to copied state
       contacts: celebCopy
     });
-  }
+  };
 
   // sortName function
   sortName() {
@@ -83,29 +73,34 @@ class ShowCelebs extends Component {
     const { contacts } = this.state;
 
     return (
-      <div>
-        {/* onClick action which points to above functions */}
-        <button onClick={() => this.addCeleb()}>Add Random Celeb</button>
+      // React method for a container instead of <div> => <div> adds a margin | <Fragment> does not
+      <Fragment>
+        <h1>IronContacts</h1>
+        <button onClick={() => this.addRandomContact()}>
+          Add Random Contact
+        </button>
         <button onClick={() => this.sortName()}>Sort by Name</button>
         <button onClick={() => this.sortPopularity()}>
           Sort by Popularity
         </button>
-        {/* map through contacts state and display each, assigning an index to each div */}
-        {contacts.map((eachContact, index) => {
-          return (
-            <div key={index}>
-              <img src={eachContact.pictureUrl} alt="" />
-              {eachContact.name}
-              {eachContact.popularity}
-              <button onClick={() => this.deleteCeleb(index)}>Delete</button>
-            </div>
-          );
-        })}
-      </div>
+
+        <table>
+          <tbody>
+            <tr>
+              <th>Picture</th>
+              <th>Name</th>
+              <th>Popularity</th>
+            </tr>
+            {contacts.map((eachContact, index) => {
+              return (
+                  <ContactCard key={index} contact={eachContact}/>
+              );
+            })}
+          </tbody>
+        </table>
+      </Fragment>
     );
   }
 }
 
-// return this.state.contacts.map((eachContact, index)=>{
-
-export default ShowCelebs;
+export default CardContainer;
